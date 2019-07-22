@@ -1,0 +1,53 @@
+<!--
+  Generated template for the Inventaire page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Produit en prise</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-list class="event-description">
+    <ion-item no-lines>
+      <div item-start class="event-thumb">
+        <ion-icon [name]="typeIcon" class="prise"></ion-icon>
+      </div>
+      <h2>Produit en prise</h2>
+      <p class="nb-colis"> {{mouvementArray.length}} produit(s) en prise(s) </p>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-item *ngFor="let mouvement of mouvementArray | mouvementFilter:filterString" (click)="selectMouvement(mouvement)">
+      <h2>Produit : {{mouvement.ref_produit}}</h2>
+      <h3>Emplacement de prise : {{mouvement.code_emplacement?mouvement.code_emplacement:"Aucun"}}</h3>
+      <p *ngIf="mouvement && mouvement.groupe">Groupe : {{mouvement.groupe}}</p>
+      <p *ngIf="mouvement.heure_prise">Date/heure : {{mouvement.heure_prise?moment(mouvement.heure_prise).format("DD/MM/YYYY HH:mm:ss"):"Aucune"}}</p>
+      <p *ngIf="mouvement.date">Date/heure : {{mouvement.date?moment(mouvement.date).format("DD/MM/YYYY HH:mm:ss"):"Aucune"}}</p>
+      <p *ngIf="mouvement && mouvement.commentaire">Commentaire : {{mouvement.commentaire}}</p>
+      <ion-badge *ngIf="mouvement.quantite>1" item-right>{{mouvement.quantite}}</ion-badge>
+    </ion-item>
+  </ion-list>
+  <p class="no-colis" *ngIf="mouvementArray.length==0">Aucun produit en prise</p>
+
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-item>
+      <ion-icon name="barcode" item-left (click)="scan()"></ion-icon>
+      <ion-input #search type="text" [(ngModel)]="filterString" [ngModelOptions]="{standalone: true}" placeholder="Recherche par code, ..."></ion-input>
+      <button ion-button icon-only item-right clear color="danger" (click)="clearSearch()">
+          <ion-icon name="close" > </ion-icon>
+        </button>
+    </ion-item>
+  </ion-toolbar>
+</ion-footer>

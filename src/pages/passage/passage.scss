@@ -1,0 +1,25 @@
+page-passage {
+    .swiper-pagination-fraction {
+        color: white;
+    }
+    .slide-type {
+        h1 {
+            font-weight: 200;
+        }
+        display: block;
+        height: 100%;
+        .slide-zoom {
+            height: 95%;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        } // space for swiper-pagination
+        .swiper-wrapper {
+            height: 95%;
+        }
+    }
+    .slide-type {
+        .div-title {
+            margin-bottom: 10%;
+        }
+    }
+}

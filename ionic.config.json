@@ -1,0 +1,8 @@
+{
+  "name": "GTracking",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "app_id": ""
+}

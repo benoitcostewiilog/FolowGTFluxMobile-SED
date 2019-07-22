@@ -1,0 +1,20 @@
+<ion-content>
+
+    <signature-pad [options]="signaturePadOptions" #signaturePad></signature-pad>
+
+
+    <ion-fab right bottom>
+        <button ion-fab icon-only (click)="validate()">
+          <ion-icon name="checkmark" ></ion-icon>
+        </button>
+
+    </ion-fab>
+
+    <ion-fab left bottom>
+        <button ion-fab color="dark"><ion-icon name="arrow-dropup"></ion-icon></button>
+        <ion-fab-list side="top">
+            <button ion-fab (click)="goBack()"><ion-icon name="arrow-back"></ion-icon></button>
+            <button ion-fab (click)="clear()"><ion-icon name="trash"></ion-icon></button>
+        </ion-fab-list>
+    </ion-fab>
+</ion-content>

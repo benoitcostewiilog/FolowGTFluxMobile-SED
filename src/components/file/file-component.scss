@@ -1,0 +1,91 @@
+file-component{
+    .file{
+        min-height: 100px;
+        height: 100px; 
+        position: relative;
+        border-radius: 7px;
+     
+
+        ion-card-content {
+            padding: 2px 2px 2px 2px;
+            height: 100%;
+        }
+
+        img{
+            max-height: 100%;  
+            width: 100%;
+            height: auto;
+            position: absolute;  
+            top: 0;  
+            bottom: 0;  
+            left: 0;  
+            right: 0;  
+            margin: auto;
+        }
+
+    }
+    .file-name {
+        text-align: center;
+        font-size: 0.8em;
+        font-style: italic;
+    }
+    .file-uploaded {
+       
+    }
+    .file-not-uploaded {
+       
+    }
+    .file-empty {
+
+        border: dashed  color($colors, primary) 4px;
+
+      
+
+        .div-add-file {
+            position: relative;top: 27%;left: 27%;
+        }
+
+        .div-add-file ion-icon {
+            color: color($colors, primary);
+        }
+
+    }
+
+    .file-document {
+        border: solid  color($colors, primary) 1px;
+
+        .div-document {
+            position: relative;top: 27%;left: 30%;
+        }
+
+
+        .div-document.pdf  ion-icon{
+            color: red;
+        }
+
+        .div-document ion-icon {
+            color: blue;
+          
+           
+        }
+     
+
+    }
+
+    .file-empty:active{
+       box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.4), 0 4px 7px 0 rgba(0, 0, 0, 0.1);
+        
+    }
+
+    .no-file{
+        text-align: center;
+        vertical-align: middle;
+        width: 100%;
+        height: 95%;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        color: gray;
+    }
+
+}

@@ -1,0 +1,47 @@
+<ion-list no-lines>
+    <ion-item-divider color="light">Signature</ion-item-divider>
+    <br>
+    <ion-item>
+        <ion-card class="cards-signature">
+
+            <ion-card-content>
+                <p class="no-picture" *ngIf="!signature.fileURL && !editEnabled ">Aucune signature</p>
+                <div [hidden]="editSignature">
+                    <img *ngIf="signature.fileURL && signature.local " src="{{signature.fileURL}} " />
+                    <img *ngIf="signature.fileURL && !signature.local" src="{{serverAddress}}{{signature.fileURL}} "
+                    />
+                </div>
+            </ion-card-content>
+
+        </ion-card>
+    </ion-item>
+    <ion-row no-padding [hidden]="!editEnabled">
+
+        <ion-col text-center>
+            <button ion-button full round icon-left (click)="edit()" class="buttonModifier">
+        <ion-icon name="create"></ion-icon>
+        Modifier
+        </button>
+
+        </ion-col>
+
+    </ion-row>
+</ion-list>
+
+
+<ion-list *ngIf="showDetail">
+
+    <ion-item-divider color="light">Informations</ion-item-divider>
+    <br>
+    <ion-item *ngIf="showDetailNom">
+        <ion-label fixed>Nom</ion-label>
+        <ion-input #inputName type="text" (keypress)="onKeyPressName($event.keyCode)" [(ngModel)]="signature.name" [ngModelOptions]="{standalone: true}" [readonly]="!editEnabled"></ion-input>
+    </ion-item>
+
+
+    <ion-item *ngIf="showDetailEmail">
+        <ion-label fixed>Email</ion-label>
+        <ion-input #inputMail type="email" (keypress)="onKeyPressMail($event.keyCode)" [(ngModel)]="signature.mail" [ngModelOptions]="{standalone: true}" [readonly]="!editEnabled"></ion-input>
+    </ion-item>
+
+</ion-list>

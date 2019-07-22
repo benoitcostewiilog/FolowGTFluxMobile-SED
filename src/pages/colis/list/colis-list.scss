@@ -1,0 +1,84 @@
+page-colis-list {
+    ion-navbar {
+        ion-buttons button[icon-only] {
+            font-size: 1.3em;
+            margin-left: 25px;
+        
+        }
+    }
+    .card-content-md {
+        padding: 0px 0px 0px 0px;
+    }
+    ion-list.list-en-prise {
+        .deleted {
+            display: none;
+        }
+    }
+    ion-list.event-description.list-en-prise {
+        margin-top: 0px;
+    }
+    ion-list.list-mouvements{
+        min-height: 25%;
+    }
+    ion-list.event-description {
+        margin-bottom: 5px;
+        border-bottom: 1px solid lightgrey;
+        ion-item {
+            background-color: #f8f8f8;
+            ion-label {
+                margin-top: 2px;
+                margin-bottom: 2px;
+            }
+        }
+        .event-done {
+            background-color: map-get($colors, event-done);
+        }
+        .event-progress {
+            background-color: map-get($colors, event-progress);
+        }
+        .event-init {
+            background-color: map-get($colors, event-init);
+        }
+        .event-logo {
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            opacity: 0.9;
+            padding-top: 12px;
+        }
+        .event-thumb {
+            border-radius: 500px;
+            width: 50px;
+            z-index: 2;
+            height: 50px;
+            text-align: center;
+            ion-icon {
+                font-size: 3em;
+            }
+            ion-icon.prise {
+                color: map-get($colors, mouvement-prise);
+            }
+            ion-icon.depose {
+                color: map-get($colors, mouvement-depose);
+            }
+            ion-icon.groupe {
+                color: map-get($colors, mouvement-groupe);
+            }
+            ion-icon.inventaire {
+                color: map-get($colors, mouvement-inventaire);
+            }
+        }
+        .nb-colis {
+            font-size: 1.2rem;
+            color: map-get($colors, primary);
+        }
+        .event-address {
+            white-space: initial;
+        }
+    }
+    .colis-init {
+        opacity: 0.3;
+    }
+    .colis-success {}
+}

@@ -1,0 +1,34 @@
+<ion-grid #fileGrid (window:resize)="onResize($event)">
+    <ion-row wrap>
+        <ion-col [attr.col-12]="nbFileRow<=1?true:null" [attr.col-6]="nbFileRow==2?true:null" [attr.col-4]="nbFileRow==3?true:null"
+            [attr.col-3]="nbFileRow>=4?true:null" *ngFor="let file of files; let i = index" (click)="fileClick(i)">
+            <ion-card class="file" [class.file-uploaded]="!file.local" [class.file-not-uploaded]="file.local" [style.height.px]="getColHeight">
+                <ion-card-content *ngIf="isImage(file.fileURL)" class="">
+                    <div [hidden]="file.fileURL==''">
+                        <img *ngIf="file.local" src="{{file.fileURL}}" />
+                        <img *ngIf="!file.local" src="{{serverAddress}}{{file.fileURL}}" />
+                    </div>
+                </ion-card-content>
+                <ion-card-content *ngIf="!isImage(file.fileURL)" class="">
+                    <div [hidden]="file.fileURL==''">
+                        <img [src]="getFileImageUrl(file.fileURL)" />
+                    </div>
+                </ion-card-content>
+            </ion-card>
+            <p *ngIf="showTitle && file.name" class="file-name">{{file.name}}</p>
+        </ion-col>
+        <ion-col [attr.col-12]="nbFileRow<=1?true:null" [attr.col-6]="nbFileRow==2?true:null" [attr.col-4]="nbFileRow==3?true:null"
+        [attr.col-3]="nbFileRow>=4?true:null" (click)="fileClick(-1)" *ngIf="blankAddFile && files.length < maxFile && editEnabled">
+        <ion-card class="file file-empty" [style.height.px]="getColHeight" tapable>
+            <ion-card-content>
+                <div class="div-add-file">
+                    <ion-icon name="add-circle" [style.font-size.px]="getColHeight*0.45"></ion-icon>
+                </div>
+
+            </ion-card-content>
+        </ion-card>
+    </ion-col>
+    </ion-row>
+</ion-grid>
+
+<p class="no-file" *ngIf="files.length==0 && (!blankAddFile || !editEnabled)">{{textNoFile}}</p>

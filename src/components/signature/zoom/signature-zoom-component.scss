@@ -1,0 +1,9 @@
+signature-component{
+    ion-card.cards-signature ion-card-header {
+    color: map-get($colors, primary);
+    }
+
+    ion-card.cards-signature .card-content {
+        padding : 2px 2px 2px 2px;
+    }
+}

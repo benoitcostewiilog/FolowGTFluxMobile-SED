@@ -1,0 +1,12 @@
+<ion-grid>
+  <ion-row class="row-menu-item">
+    <ion-col col-6 *ngFor="let item of items; let i = index">
+      <ion-card tapable (click)="itemClick(item.id)" [class.disabled]="item.disabled" [class.enabled]="!item.disabled">
+        <ion-card-content>
+          <ion-icon [name]="item.icon"></ion-icon>
+          <p text-center>{{item.text}}</p>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>

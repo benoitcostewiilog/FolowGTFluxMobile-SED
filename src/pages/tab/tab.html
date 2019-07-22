@@ -1,0 +1,30 @@
+<ion-menu id="menuMain" [content]="mycontent">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <button ion-item (click)="goToHomePage()">
+        <ion-icon name="home" item-start></ion-icon>
+        Accueil
+      </button>
+      <button ion-item *ngFor="let p of pages" (click)="openPage(p)" [disabled]="!menuEnabled">
+        <ion-icon [name]="p.icon" item-start></ion-icon>
+        {{p.title}}
+      </button>
+      <button ion-item (click)="goToParametre()">
+        <ion-icon name="settings" item-start></ion-icon>
+        Paramètres
+      </button>
+      <button ion-item (click)="goToAbout()">
+        <ion-icon name="help" item-start></ion-icon>
+        À propos
+      </button>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<ion-nav [root]="rootPage" #mycontent swipe-back-enabled="false"></ion-nav>

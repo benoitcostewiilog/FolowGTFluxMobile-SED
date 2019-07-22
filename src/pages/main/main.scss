@@ -1,0 +1,181 @@
+ion-content.main {
+    background-color: color($colors, background-grey);
+}
+
+.main {
+    .swiper-slide {
+        align-items: inherit;
+    }
+    .buttonMain {
+        height: 50px;
+        margin-top: 10%;
+    }
+    .buttonDiv {
+        margin-top: 25%;
+    }
+    .menu {
+        padding: 0;
+        margin-left: 0;
+        margin-right: 0;
+        ion-row {
+            flex-wrap: wrap;
+        }
+        .row-menu-stats {
+            background-color: white;
+            >ion-col {
+                padding-bottom: 10px;
+            }
+            ion-col {
+                border: 1px solid #f4f4f7;
+            }
+            p {
+                font-size: 23px;
+                margin-bottom: 0px;
+                font-weight: 100;
+                color: black;
+            }
+            p.number {
+                font-size: 34px;
+                margin-top: 0px;
+            }
+            small {
+                color: rgb(103, 106, 108);
+                margin-bottom: 3px;
+            }
+            .col-adresse {
+                border-bottom: 0;
+                padding-bottom: 20px;
+                p {
+                    margin-top: 3px;
+                }
+            }
+            ion-icon {
+                font-size: 30px;
+                color: color($colors, primary);
+            }
+            .progress-outer {
+                width: 96%;
+                margin: 10px 2%;
+                padding: 3px;
+                text-align: center;
+                background-color: #f4f4f4;
+                border: 1px solid #dcdcdc;
+                color: #fff;
+                border-radius: 20px;
+            }
+            .progress-inner {
+                min-width: 0%;
+                white-space: nowrap;
+                overflow: hidden;
+                padding: 5px;
+                padding-right: 0px;
+                padding-left: 0px;
+                border-radius: 20px;
+                background-color: map-get($colors, primary);
+            }
+            .icon-small {
+                font-size: 75%;
+            }
+            .list-stats {
+                margin: 0;
+            }
+        }
+        .row-menu-item {
+            margin-top: 0px;
+            ion-icon {
+                font-size: 50px;
+                color: color($colors, dark);
+            }
+            ion-col {
+                height: 110px;
+            }
+            ion-card {
+                height: 100%;
+            }
+            .prise {
+                padding-top: 0px;
+                ion-icon,
+                p {
+                    color: color($colors, mouvement-prise);
+                }
+            }
+            .depose {
+                padding-top: 0px;
+                ion-icon,
+                p {
+                    color: color($colors, mouvement-depose);
+                }
+            }
+            .groupe {
+                ion-icon,
+                p {
+                    color: color($colors, mouvement-groupe);
+                }
+            }
+            .passage {
+                ion-icon,
+                p {
+                    color: color($colors, mouvement-passage);
+                }
+            }
+            .inventaire {
+                ion-icon,
+                p {
+                    color: color($colors, mouvement-inventaire);
+                }
+            }
+            .settings {
+                ion-icon,
+                p {
+                    color: grey;
+                }
+            }
+            .logout {
+                ion-icon,
+                p {
+                    color: color($colors, danger);
+                }
+            }
+            .notifications {
+                ion-icon,
+                p {
+                    color: color($colors, warning);
+                }
+                ion-badge {
+                    background-color: color($colors, warning);
+                    right: calc(50% - 35px);
+                    position: absolute;
+                    top: 20%;
+                    padding: 1px 6px;
+                    height: auto;
+                    font-size: 12px;
+                    line-height: 16px;
+                }
+            }
+        }
+        ion-col {
+            text-align: center;
+            padding: 5px 5px;
+        }
+        ion-card.menu-stats {
+            margin-bottom: 0px;
+        }
+    }
+}
+
+.scan-alert button.alert-button {
+    width: 30%;
+}
+
+.scan-alert .alert-button-group .button-inner {
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.scan-alert .alert-button-group-vertical {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}

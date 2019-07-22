@@ -1,0 +1,168 @@
+<ion-header>
+  <ion-navbar color="primary">
+
+
+    <button ion-button icon-only menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+
+    <ion-title>Accueil - {{user?user.username:""}}</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="refresh()">
+      <ion-spinner [hidden]="!syncInProgress" ></ion-spinner>
+      <ion-icon name="refresh" [hidden]="syncInProgress" ></ion-icon>
+    </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="main">
+
+  <ion-grid class="menu">
+
+    <ion-row class="row-menu-stats">
+      <ion-col col-12>
+        <ion-slides pager>
+          <ion-slide>
+            <ion-row class="row-menu-stats">
+
+              <ion-col col-6>
+                <p class="number">{{nbColisPrise}}</p>
+                <small>Prise</small>
+                <br>
+
+              </ion-col>
+              <ion-col col-6>
+                <p class="number">{{nbColisDepose}}</p>
+                <small>Dépose</small>
+                <br>
+
+              </ion-col>
+              <ion-col col-12 class="col-adresse" (click)="afficherEcranEnPrise()">
+                <p><a>{{nbColisEnPrise}}</a></p>
+                <small><a>Produit en prise</a></small>
+
+                <div class="progress-outer progress-small">
+                  <div class="progress-inner " [style.width]="progressDepose + '%'">
+
+                  </div>
+                </div>
+
+              </ion-col>
+            </ion-row>
+          </ion-slide>
+          <ion-slide>
+            <ion-grid class="menu">
+
+              <ion-row class="row-menu-stats">
+                <ion-col col-6>
+                  <p class="number">{{nbColisPrise}}</p>
+                  <small>Prise</small>
+
+
+                </ion-col>
+                <ion-col col-6>
+                  <p class="number">{{nbColisDepose}}</p>
+                  <small>Dépose</small>
+
+                </ion-col>
+
+                <ion-col col-6>
+                  <p class="number">{{nbPassage}}</p>
+                  <small>Passage</small>
+
+
+                </ion-col>
+                <ion-col col-6>
+                  <p class="number">{{nbInventaire}}</p>
+                  <small>Inventaire</small>
+
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+
+          </ion-slide>
+        </ion-slides>
+
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="row-menu-item" [hidden]="!pageLoaded">
+      <ion-col col-6 class="prise">
+        <ion-card (click)="afficherEcranPrise()">
+          <ion-card-content>
+            <ion-icon name="cloud-upload"></ion-icon>
+            <p text-center>Prise</p>
+          </ion-card-content>
+
+        </ion-card>
+
+      </ion-col>
+
+      <ion-col col-6 class="depose">
+        <ion-card (click)="afficherEcranDepose()">
+          <ion-card-content>
+            <ion-icon name="cloud-download"></ion-icon>
+            <p text-center>Dépose</p>
+          </ion-card-content>
+
+        </ion-card>
+
+      </ion-col>
+
+
+      <ion-col col-6 class="groupe">
+        <ion-card (click)="afficherEcranGroupe()">
+          <ion-card-content>
+            <ion-icon name="cube"></ion-icon>
+            <p text-center>Groupe</p>
+          </ion-card-content>
+
+        </ion-card>
+
+      </ion-col>
+      <ion-col col-6 class="passage">
+        <ion-card (click)="afficherEcranPassage()">
+          <ion-card-content>
+            <ion-icon name="redo"></ion-icon>
+            <p text-center>Passage</p>
+          </ion-card-content>
+
+        </ion-card>
+
+      </ion-col>
+
+
+      <ion-col col-6 class="inventaire">
+        <ion-card (click)="afficherEcranInventaire()">
+          <ion-card-content>
+            <ion-icon name="barcode"></ion-icon>
+            <p text-center>Inventaire</p>
+          </ion-card-content>
+
+        </ion-card>
+
+      </ion-col>
+      <ion-col col-6 class="logout">
+        <ion-card (click)="logout()">
+          <ion-card-content>
+            <ion-icon name="log-out"></ion-icon>
+            <p text-center>Déconnexion</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6 class="settings">
+        <ion-card (click)="goToParametre()">
+          <ion-card-content>
+            <ion-icon name="settings"></ion-icon>
+            <p text-center>Paramètres</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

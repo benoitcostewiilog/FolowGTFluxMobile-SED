@@ -1,0 +1,11 @@
+<div class="input-group bootstrap-touchspin">
+    <span class="input-group-btn">
+          <button class="btn btn-default bootstrap-touchspin-down" type="button" (click)="decrementQte()" [disabled]="readonly">-</button>
+          </span>
+
+    <input #inputNumber class="form-control" style="display: block;" type="number" min="0" [(ngModel)]="value" [ngModelOptions]="{standalone: true}" [readonly]="readonly">
+
+    <span class="input-group-btn">
+            <button class="btn btn-default bootstrap-touchspin-up" type="button" (click)="incrementQte()" [disabled]="readonly">+</button>
+            </span>
+</div>

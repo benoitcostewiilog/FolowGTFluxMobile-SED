@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Signature</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+
+
+  <signature-component [serverAddress]="serverAddress" [editEnabled]="isSignatureAvailable" [showDetail]="true" [showDetailNom]="true" [showDetailEmail]="false"></signature-component>
+
+  <ion-fab right bottom [hidden]="!isSignatureAvailable">
+    <button ion-fab icon-only (click)="saveSignature()">
+          <ion-icon name="checkmark" ></ion-icon>
+        </button>
+  </ion-fab>
+
+
+</ion-content>

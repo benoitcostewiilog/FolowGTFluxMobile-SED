@@ -1,0 +1,78 @@
+<!--
+  Generated template for the emplacement page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{title}}</ion-title>
+    <ion-buttons end>
+      <button *ngIf="inputMethod!='scan' && inputMethodScan" ion-button icon-only (click)="showScan()">
+        <ion-icon item-left name="barcode"> </ion-icon>
+      </button>
+      <button *ngIf="inputMethod!='list' && inputMethodList" ion-button icon-only (click)="showList()">
+        <ion-icon item-left name="list"> </ion-icon>
+      </button>
+      <button *ngIf="inputMethod!='input' && inputMethodInput" ion-button icon-only (click)="showInput()">
+        <ion-icon item-left name="create"> </ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content *ngIf="inputMethod=='input'">
+
+  <form (ngSubmit)="validateInput()" class="form-saisie">
+    <ion-list no-lines>
+
+
+      <ion-item id="itemEmplacement">
+        <ion-input #valueInput type="text" class="form-control" [(ngModel)]="value" [ngModelOptions]="{standalone: true}"></ion-input>
+      </ion-item>
+
+    </ion-list>
+    <div padding>
+      <button ion-button block large>Valider</button>
+    </div>
+  </form>
+
+</ion-content>
+
+<ion-content *ngIf="inputMethod=='list'">
+
+  <ion-list class="list-emplacement">
+    <ion-item *ngFor="let emplacement of emplacements | emplacementFilter:filterString" (click)="selectEmplacement(emplacement)">
+      {{emplacement.libelle}}
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+<ion-footer *ngIf="inputMethod=='list'">
+  <ion-toolbar>
+    <ion-item>
+      <ion-icon name="search" item-left></ion-icon>
+      <ion-input #search type="text" [(ngModel)]="filterString" [ngModelOptions]="{standalone: true}" placeholder="Recherche par code, ..."></ion-input>
+      <button ion-button icon-only item-right clear color="danger" (click)="clearSearch()">
+        <ion-icon name="close"> </ion-icon>
+      </button>
+    </ion-item>
+  </ion-toolbar>
+</ion-footer>
+
+<ion-content *ngIf="inputMethod=='scan'">
+
+  <form class="form-saisie-scan">
+
+    <div padding>
+      <button ion-button block large (click)="scan()">Scanner</button>
+    </div>
+  </form>
+
+</ion-content>

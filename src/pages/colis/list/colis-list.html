@@ -1,0 +1,105 @@
+<!--
+  Generated template for the Inventaire page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-buttons left *ngIf="addBack">
+      <button ion-button icon-only (click)="goBack()" style="padding-left: 8px;padding-right: 8px;">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>{{title}}</ion-title>
+    <ion-buttons end *ngIf="!readonly">
+      <button *ngIf="type==TYPE_GROUPE" ion-button icon-only (click)="deleteAll()">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="changeSearchMode()">
+        <ion-icon [name]="searchEnabled?'close':'search'"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="validate()">
+        <ion-icon name="checkmark"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-list class="event-description">
+    <ion-item no-lines>
+      <div item-start class="event-thumb">
+        <ion-icon [name]="typeIcon" [class.prise]="type=='prise'" [class.depose]="type=='depose'" [class.groupe]="type=='groupe'"
+          [class.inventaire]="type=='inventaire'"></ion-icon>
+      </div>
+      <h2>{{type.toUpperCase()}}</h2>
+      <p class="event-address">Emplacement : {{emplacement}}</p>
+      <p class="nb-colis"> {{mouvementArray.length}} produit(s) scanné(s) </p>
+    </ion-item>
+  </ion-list>
+  <ion-list class="list-mouvements">
+    <ion-item *ngFor="let mouvement of mouvementArray | mouvementFilter:filterString" (click)="selectMouvement(mouvement,false)">
+      <h2>{{!mouvement.groupe?"Produit":"Groupe"}} : {{mouvement.ref_produit}}</h2>
+      <h3 *ngIf="mouvement && mouvement.empl_destination">Destination : {{mouvement.empl_destination?mouvement.empl_destination:"Aucun"}}</h3>
+
+      <p *ngIf="mouvement.heure_prise">Date/heure : {{mouvement.heure_prise?moment(mouvement.heure_prise).format("DD/MM/YYYY HH:mm:ss"):"Aucune"}}</p>
+      <p *ngIf="mouvement.date">Date/heure : {{mouvement.date?moment(mouvement.date).format("DD/MM/YYYY HH:mm:ss"):"Aucune"}}</p>
+      <p *ngIf="mouvement && mouvement.commentaire">Commentaire : {{mouvement.commentaire}}</p>
+      <p *ngIf="mouvement && mouvement.signature && mouvement.signature.length>0">Signature ajoutée</p>
+      <ion-badge *ngIf="mouvement.quantite>1" item-right>{{mouvement.quantite}}</ion-badge>
+      <ion-badge *ngIf="mouvement.groupe && mouvement.quantiteGroupe>0" item-right>{{mouvement.quantiteGroupe}}</ion-badge>
+    </ion-item>
+  </ion-list>
+
+  <ion-list class="event-description list-en-prise" *ngIf="showColisEnPrise &&produitEnPrise && produitEnPrise.length>0 && nbProduitEnPrise>0">
+    <ion-item no-lines>
+      <div item-start class="event-thumb">
+        <ion-icon name="cloud-upload" class="prise"></ion-icon>
+      </div>
+      <h2>Produit en prise</h2>
+      <p class="nb-colis"> {{nbProduitEnPrise}} produit(s) en prise(s) </p>
+    </ion-item>
+  </ion-list>
+  <ion-list class="list-en-prise" *ngIf="showColisEnPrise && produitEnPrise && produitEnPrise.length>0 && nbProduitEnPrise>0">
+    <ion-item *ngFor="let mouvement of produitEnPrise | mouvementFilter:filterString" [class.deleted]="mouvement.deleted">
+      <h2 (click)="selectMouvement(mouvement,true)">Produit : {{mouvement.ref_produit}}</h2>
+      <h3 (click)="selectMouvement(mouvement,true)">Emplacement de prise : {{mouvement.code_emplacement?mouvement.code_emplacement:"Aucun"}}</h3>
+      <h3 *ngIf="mouvement && mouvement.empl_destination" (click)="selectMouvement(mouvement,true)">Destination : {{mouvement.empl_destination?mouvement.empl_destination:"Aucun"}}</h3>
+      <p *ngIf="mouvement && mouvement.groupe">Groupe : {{mouvement.groupe}}</p>
+      <p *ngIf="mouvement.heure_prise">Date/heure : {{mouvement.heure_prise?moment(mouvement.heure_prise).format("DD/MM/YYYY HH:mm:ss"):"Aucune"}}</p>
+      <p *ngIf="mouvement.date">Date/heure : {{mouvement.date?moment(mouvement.date).format("DD/MM/YYYY HH:mm:ss"):"Aucune"}}</p>
+      <p *ngIf="mouvement && mouvement.commentaire">Commentaire : {{mouvement.commentaire}}</p>
+      <ion-badge *ngIf="mouvement.quantite>1" item-right>{{mouvement.quantite}}</ion-badge>
+      <ion-icon *ngIf="!scanDeposeObligatoire && type==TYPE_DEPOSE" item-right name="cloud-download" (click)="add(mouvement.ref_produit)"></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer *ngIf="searchEnabled && !readonly">
+  <ion-toolbar>
+    <ion-item>
+      <ion-icon name="search" item-left></ion-icon>
+      <ion-input #search type="text" [(ngModel)]="filterString" [ngModelOptions]="{standalone: true}" placeholder="Recherche par code, ..."></ion-input>
+      <button ion-button icon-only item-right clear color="danger" (click)="clearSearch()">
+        <ion-icon name="close"> </ion-icon>
+      </button>
+    </ion-item>
+  </ion-toolbar>
+</ion-footer>
+<ion-footer *ngIf="!searchEnabled  && !readonly">
+  <ion-toolbar>
+    <form (ngSubmit)="submitCB()">
+      <ion-item>
+        <ion-icon item-left name="barcode" (click)="scan()"> </ion-icon>
+        <ion-input #codeBarre type="text" [(ngModel)]="barcode" [ngModelOptions]="{standalone: true}" placeholder="Scanner le code-barre"></ion-input>
+        <button ion-button icon-only item-right clear>
+          <ion-icon name="add"> </ion-icon>
+        </button>
+      </ion-item>
+    </form>
+  </ion-toolbar>
+</ion-footer>

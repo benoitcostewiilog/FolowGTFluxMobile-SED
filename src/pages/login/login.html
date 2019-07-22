@@ -1,0 +1,48 @@
+<ion-content padding class="login">
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" refreshingSpinner="circles" refreshingText="Chargement des utilisateurs...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <div class="imgLogo">
+    <img src="img/followgt.png" />
+  </div>
+  <h5 class="subtitle"></h5>
+  <br>
+  <h3>Connexion</h3>
+  <br>
+  <form (ngSubmit)="login()">
+    <ion-list>
+
+      <ion-item>
+        <ion-label floating>Login</ion-label>
+        <ion-input #password type="password" [(ngModel)]="user.password_nomade" [ngModelOptions]="{standalone: true}"></ion-input>
+      </ion-item>
+
+    </ion-list>
+    <br>
+    <button ion-button full type="submit">Login</button>
+  </form>
+  <ion-fab *ngIf="showBtnBarcode" right bottom (click)="scan()">
+      <button ion-fab><ion-icon name="barcode"></ion-icon></button>
+  </ion-fab>
+
+</ion-content>
+
+<ion-footer no-shadow>
+  <ion-toolbar no-border class="toolBarLogin">
+    <ion-grid no-padding>
+      <ion-row>
+        <ion-col col-4>Version {{version}}</ion-col>
+
+        <ion-col col-5 style="text-align: center">{{domaine}}</ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-buttons end>
+      <button ion-button icon-only royal (click)="goToParametre()">
+      <ion-icon name="settings"></ion-icon>
+    </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
