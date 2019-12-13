@@ -67,7 +67,7 @@
     "ionicons": "3.0.0",
     "moment": "^2.18.1",
     "motorola-datawedge-cordova-plugin-master": "git+https://github.com/BlueFletch/motorola-datawedge-cordova-plugin.git",
-    "npm": "^6.10.1",
+    "npm": "^6.13.4",
     "phonegap-plugin-barcodescanner": "^6.0.8",
     "rxjs": "5.4.3",
     "socket.io-client": "^1.7.2",
