@@ -70,7 +70,7 @@
     "npm": "^6.10.1",
     "phonegap-plugin-barcodescanner": "^6.0.8",
     "rxjs": "5.4.3",
-    "socket.io-client": "^1.7.2",
+    "socket.io-client": "^4.5.3",
     "sw-toolbox": "3.6.0",
     "uuid": "^3.3.2",
     "via": "0.0.1",
